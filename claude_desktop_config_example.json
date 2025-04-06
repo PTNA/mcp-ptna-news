@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ptna-news": {
+      "command": "node",
+      "args": [
+        "/Users/<USER NAME>/Documents/GitHub/Claude/ptna-news-server/dist/index.js"
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+src/
+tsconfig.json
+.npmignore
+claude_desktop_config_example.json
+node_modules/
