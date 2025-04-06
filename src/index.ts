@@ -27,12 +27,24 @@ async function main() {
   server.tool(
     "get_ptna_news",
     "全日本ピアノ指導者協会（ピティナ）の最新ニュースを取得します",
-    // パラメータスキーマ - オプショナルでカテゴリーによるフィルタリング可能
     {
-      category: z.string().optional().describe("ニュースカテゴリー（例: コンペティション、コンサート等）によるフィルター"),
+      category: z.string().optional().describe(
+        "ニュースカテゴリー（例: コンペティション、コンサート等）によるフィルター\n" +
+        "- コンペティション: ピアノコンペティション関連情報\n" +
+        "- 提携コンクール: 提携している他団体のコンクール情報\n" +
+        "- コンサート: 演奏会、リサイタル情報\n" +
+        "- セミナー: 講座、勉強会情報\n" +
+        "- 調査・研究: 音楽研究、楽譜情報等\n" +
+        "- ステップ: ピティナ・ピアノステップ関連情報\n" +
+        "- 指導者ライセンス: 指導者資格関連情報\n" +
+        "- 寄付・CrossGiving: 寄付活動報告\n" +
+        "- コーポレート: 協会活動、組織情報\n" +
+        "- 今週のコラム: 専務理事（福田成康）による定期コラム\n" +
+        "- OPEN PIANO PROJECT: OPEN PIANO PROJECT\n" +
+        "- 教室紹介: ピアノ教室紹介関連情報"
+      ),
       limit: z.number().optional().default(10).describe("取得するニュース件数（デフォルト10件）"),
     },
-    // ツール実行関数
     async ({ category, limit = 10 }) => {
       try {
         // ピティナのニュースフィードを取得
@@ -81,7 +93,6 @@ async function main() {
     }
   );
 
-  // トランスポートの設定と接続
   const transport = new StdioServerTransport();
   await server.connect(transport);
 
@@ -89,7 +100,6 @@ async function main() {
   console.error("ピティナニュースMCPサーバーが起動しました");
 }
 
-// メイン関数の実行とエラーハンドリング
 main().catch(error => {
   console.error("サーバー起動エラー:", error);
   process.exit(1);
