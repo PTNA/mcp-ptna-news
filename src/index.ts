@@ -3,9 +3,6 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-/**
- * ピティナニュースの記事を表す型
- */
 type NewsItem = {
   title: string;
   author: string;
@@ -14,17 +11,12 @@ type NewsItem = {
   description: string;
 };
 
-/**
- * メイン関数 - MCPサーバーの初期化と起動
- */
 async function main() {
-  // MCPサーバーの初期化
   const server = new McpServer({
-    name: "ptna-news-server",
+    name: "mcp-ptna-news",
     version: "1.0.0",
   });
 
-  // ピティナニュース取得ツールの登録
   server.tool(
     "get_ptna_news",
     "全日本ピアノ指導者協会（ピティナ）の最新ニュースを取得します",
@@ -48,7 +40,6 @@ async function main() {
     },
     async ({ category, limit = 10 }) => {
       try {
-        // ピティナのニュースフィードを取得
         const response = await fetch("https://www.piano.or.jp/feeds.json");
 
         if (!response.ok) {
@@ -56,7 +47,7 @@ async function main() {
             isError: true,
             content: [{
               type: "text",
-              text: `APIリクエストエラー: ${response.status} ${response.statusText}`
+              text: `APIリクエストエラー: ${response.status}`
             }]
           };
         }
@@ -87,7 +78,7 @@ async function main() {
           isError: true,
           content: [{
             type: "text",
-            text: `ニュース取得中にエラーが発生しました: ${error instanceof Error ? error.message : String(error)}`
+            text: "ニュース取得中にエラーが発生しました"
           }]
         };
       }
@@ -97,7 +88,6 @@ async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
 
-  // ログにサーバー起動を記録（標準エラー出力には書き込み可能）
   console.error("ピティナニュースMCPサーバーが起動しました");
 }
 

@@ -2,39 +2,43 @@
 
 全日本ピアノ指導者協会（ピティナ）の最新ニュースを取得するためのMCPサーバー。
 
-## インストール方法
-
-### npxで直接実行する
+### Local Installation
 
 ```bash
-npx ptna-news-mcp
-```
-
-### グローバルインストール
-
-```bash
-npm install -g ptna-news-mcp
-ptna-news-mcp
-```
-
-### ローカルでの開発
-
-```bash
-# リポジトリをクローン
 git clone https://github.com/yourusername/ptna-news-mcp.git
 cd ptna-news-mcp
 
-# 依存関係のインストール
 npm install
 
-# 開発中の実行
-npm start
+npm run build
 ```
 
 ## Claude for Desktopでの設定
 
 Claude for Desktopの設定ファイル（`~/Library/Application Support/Claude/claude_desktop_config.json`）に以下を追加:
 
+### local
+```bash
+git clone https://github.com/yourusername/ptna-news-mcp.git
+cd ptna-news-mcp
+
+npm install
+
+npm run build
+```
+
+```json
+{
+  "mcpServers": {
+    "ptna-news": {
+      "command": "node",
+      "args": ["<cloned path>/dist/index.js"]
+    }
+  }
+}
+```
+
+### npx
 ```json
 {
   "mcpServers": {
@@ -59,20 +63,6 @@ Claude for Desktopで以下のような質問ができます:
 - ピティナの最新ニュースを教えて
 - コンペティション関連のピティナニュースを3件取得して
 - コンサートカテゴリーのニュースはある？
-
-## NPMへの公開方法
-
-このパッケージをNPMに公開する場合は以下の手順に従ってください：
-
-1. NPMアカウントを作成/ログイン
-```bash
-npm login
-```
-
-2. パッケージの公開
-```bash
-npm publish
-```
 
 ## ライセンス
 
