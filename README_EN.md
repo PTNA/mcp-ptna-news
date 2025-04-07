@@ -44,7 +44,7 @@ npm run build
   "mcpServers": {
     "ptna-news": {
       "command": "npx",
-      "args": ["ptna-news-mcp"]
+      "args": ["mcp-ptna-news"]
     }
   }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "ptna-news-mcp",
-  "version": "1.0.0",
+  "name": "mcp-ptna-news",
+  "version": "0.0.2",
   "description": "ピティナ(全日本ピアノ指導者協会)のニュースを取得するMCPサーバー",
   "type": "module",
   "main": "dist/index.js",
@@ -24,13 +24,12 @@
   "author": "HosakaKeigo",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.1.0",
-    "node-fetch": "^3.3.2",
+    "@modelcontextprotocol/sdk": "^1.8.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
-    "typescript": "^5.3.3",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }
